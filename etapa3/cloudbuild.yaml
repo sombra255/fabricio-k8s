@@ -1,7 +1,7 @@
 steps:
 - id: go_test 
   name: golang
-  args: ["go", "test", "/src/main"] 
+  args: ["go", "test", "./src/main"] 
 
 - id: go_test 2
   name: "gcr.io/cloud-builders/go"
