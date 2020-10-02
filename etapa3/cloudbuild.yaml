@@ -6,4 +6,4 @@ steps:
 - id: go_test 2
   name: "gcr.io/cloud-builders/go"
   args: ["test", "main"]
-  env: ["GOPATH=/etapa3/src/main/"]
+  env: ["GOPATH=/etapa3"]
