@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-deployment
+      tier: db
+  template:
+    metadata:
+      labels:
+        app: mysql-deployment
+        tier: db
+    spec:
+      containers:
+      - name: mysql-deployment
+        image: mysql:5.7
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: ROOT_PASSWORD
+        
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql-pv-claim
+
+      volumes:
+      - name: mysql-pv-claim
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+
+

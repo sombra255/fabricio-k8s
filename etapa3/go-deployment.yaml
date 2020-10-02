@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-deployment
+spec:
+  selector:
+    matchLabels:
+      app: go-deployment
+  template:
+    metadata:
+      labels:
+        app: go-deployment
+    spec:
+      containers:
+      - name: go-deployment
+        image: 9324015768815731/fabricio-go-etapa3:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 8000
