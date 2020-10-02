@@ -1,4 +1,5 @@
 steps:
 - id: go_test 
-  name: golang
-  args: ["go", "test", "/src/main"] 
+  name: "gcr.io/cloud-builders/go"
+  args: ["test", "main"]
+  env: ["GOPATH=/src/main"]
